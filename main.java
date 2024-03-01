@@ -18,16 +18,6 @@ public class main {
 		if(Integer.parseInt(action) == 1) {
 			train.promptUser(input, action);
 			test.promptUser(input, action);
-			do {                                                                                                                                         System.out.println("Enter 1 to test/deploy using a testing/deploying data file, enter 2 to quit");
-				action = input.nextLine();
-			} while(userInput.checkAction(action));
-
-			if(Integer.parseInt(action) == 2){
-				System.exit(0);
-			}
-			else {
-				
-			}
 		}
 		else {
 			test.promptUser(input,action);

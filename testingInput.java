@@ -5,7 +5,8 @@ public class testingInput {
 	String readFile, writeFile, action;
 	public void promptUser(Scanner input, String action){
 		int typeAction = Integer.parseInt(action);
-		do {                                                                                                                                         System.out.println("Enter 1 to test/deploy using a testing/deploying data file, enter 2 to quit");                                 action = input.nextLine();
+		do {                                                                                                                                         System.out.println("Enter 1 to test/deploy using a testing/deploying data file, enter 2 to quit");          
+			action = input.nextLine();
 		} while(userInput.checkAction(action));
 
                         if(Integer.parseInt(action) == 2){

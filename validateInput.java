@@ -23,7 +23,6 @@ public class validateInput {
 	}
 
 	public boolean checkReadFile(String file, int typeAct){
-		//return false;
 		try {
 			String readFile = "";
                 	if(typeAct == 1) {
@@ -31,8 +30,8 @@ public class validateInput {
                 }
                 	else {
                         	readFile = "testingSets/" + file;
-			BufferedReader reader = new BufferedReader(new FileReader(readFile));
 			}
+			BufferedReader reader = new BufferedReader(new FileReader(readFile));
 			return false;
 		} catch (IOException e) {
             		System.err.println("An error occurred while reading the training file: " + e.getMessage());
@@ -41,7 +40,6 @@ public class validateInput {
 	}
 
 	public boolean validateWriteFile(String file){
-		//return false;
 		String writeFile = "testResults/" + file;
 		try (BufferedWriter writer = new BufferedWriter(new FileWriter(writeFile))) {
 			return false;
@@ -54,7 +52,7 @@ public class validateInput {
 	public boolean validateWeight(String value){
 		 try {
                         intValue = Integer.parseInt(value);
-                        if(userAction == 0 || userAction == 1){
+                        if(intValue == 0 || intValue == 1){
                                 return false;
 			}
                         else {
@@ -69,7 +67,7 @@ public class validateInput {
 	public boolean validateEpoch(String value){
 		try {
                         intValue = Integer.parseInt(value);
-                        if(userAction <= 0){
+                        if(intValue <= 0){
                                 return true;
                         }
                         else {
@@ -84,7 +82,7 @@ public class validateInput {
 	public boolean validateLearningRate(String value){
 		 try {
                         doubleValue = Integer.parseInt(value);
-                        if(userAction > 0.0 && userAction <= 1.0){
+                        if(doubleValue > 0.0 && doubleValue <= 1.0){
                                 return false;
                         }
                         else {

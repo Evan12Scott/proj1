@@ -4,12 +4,13 @@ public class trainingInput {
         validateInput userInput = new validateInput();
 	String readFile, weight, epoch, writeFile, learningRate, theta, threshold;
 	
-	public void promptUser(Scanner input) {
+	public void promptUser(Scanner input, String action) {
+		int typeAction = Integer.parseInt(action);
 
 		do {
 			System.out.println("Enter the training data file name and ensure it is located in the TRAININGSET subdirectory:");
                         readFile = input.nextLine();
-		} while(userInput.checkReadFile(readFile));
+		} while(userInput.checkReadFile(readFile, typeAction));
 
                 do {
                         System.out.println("Enter 0 to initialize weights to 0, enter 1 to initialize weights to random values between -0.5 and 0.5:");

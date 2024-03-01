@@ -16,8 +16,8 @@ public class main {
 		} while (userInput.checkAction(action));
 		
 		if(Integer.parseInt(action) == 1) {
-			train.promptUser(input);
-			test.promptUser(input);
+			train.promptUser(input, action);
+			test.promptUser(input, action);
 			do {                                                                                                                                         System.out.println("Enter 1 to test/deploy using a testing/deploying data file, enter 2 to quit");
 				action = input.nextLine();
 			} while(userInput.checkAction(action));
@@ -30,7 +30,7 @@ public class main {
 			}
 		}
 		else {
-			test.promptUser(input);
+			test.promptUser(input,action);
 		}
 	}
 }

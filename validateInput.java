@@ -1,4 +1,5 @@
 import java.util.InputMismatchException;
+import java.io.*;
 
 public class validateInput {
 	private int userAction;
@@ -21,12 +22,33 @@ public class validateInput {
 		}	
 	}
 
-	public boolean checkReadFile(String file){
-		return false;	
+	public boolean checkReadFile(String file, int typeAct){
+		//return false;
+		try {
+			String readFile = "";
+                	if(typeAct == 1) {
+                        	readFile = "trainingSets/" + file;
+                }
+                	else {
+                        	readFile = "testingSets/" + file;
+			BufferedReader reader = new BufferedReader(new FileReader(readFile));
+			}
+			return false;
+		} catch (IOException e) {
+            		System.err.println("An error occurred while reading the training file: " + e.getMessage());
+			return true;
+        	}
 	}
 
 	public boolean validateWriteFile(String file){
-		return false;
+		//return false;
+		String writeFile = "testResults/" + file;
+		try (BufferedWriter writer = new BufferedWriter(new FileWriter(writeFile))) {
+			return false;
+		} catch (IOException e) {
+			System.err.println("An error occurred while writing to the test file: " + e.getMessage());
+			return true;
+        	}
 	}
 
 	public boolean validateWeight(String value){

@@ -81,7 +81,7 @@ public class validateInput {
 
 	public boolean validateLearningRate(String value){
 		 try {
-                        doubleValue = Integer.parseInt(value);
+                        doubleValue = Double.parseDouble(value);
                         if(doubleValue > 0.0 && doubleValue <= 1.0){
                                 return false;
                         }
@@ -96,7 +96,7 @@ public class validateInput {
 
 	public boolean validateTheta(String value){
 		 try {
-                        doubleValue = Integer.parseInt(value);
+                        doubleValue = Double.parseDouble(value);
 			return false;
                 } catch(NumberFormatException e) {
                         System.out.println("Invalid input. Please enter a number.");
@@ -106,7 +106,7 @@ public class validateInput {
 
 	public boolean validateThreshold(String value){
 		try {
-                        doubleValue = Integer.parseInt(value);
+                        doubleValue = Double.parseDouble(value);
                         return false;
                 } catch(NumberFormatException e) {
                         System.out.println("Invalid input. Please enter a number.");

@@ -8,7 +8,7 @@ public class trainingInput {
 		int typeAction = Integer.parseInt(action);
 
 		do {
-			System.out.println("Enter the training data file name and ensure it is located in the TRAININGSET subdirectory:");
+			System.out.println("Enter the training data file name and ensure it is located in the TRAININGSETS subdirectory [INCLUDE .txt]:");
                         readFile = input.nextLine();
 		} while(userInput.checkReadFile(readFile, typeAction));
 
@@ -25,7 +25,7 @@ public class trainingInput {
                 } while(userInput.validateEpoch(epoch));
 
                 do {
-                        System.out.println("Enter a file name to save the trained weight settings:");
+                        System.out.println("Enter a file name to save the trained weight settings [INCLUDE .txt]:");
                         writeFile = input.nextLine();
                         } while(userInput.validateWriteFile(writeFile));
 
@@ -35,7 +35,7 @@ public class trainingInput {
                 } while(userInput.validateLearningRate(learningRate));
 
 		do {
-                        System.out.println("Enter the threshold theta:\n");
+                        System.out.println("Enter the threshold theta:");
                         theta = input.nextLine();
                 } while(userInput.validateTheta(theta));
 
@@ -46,7 +46,7 @@ public class trainingInput {
 
                 // valid inputs so now convert and do perceptron learning
                 int w = Integer.parseInt(weight), ep = Integer.parseInt(epoch);
-                double alpha = Integer.parseInt(learningRate), th = Integer.parseInt(theta), thr = Integer.parseInt(threshold);
+                double alpha = Double.parseDouble(learningRate), th = Double.parseDouble(theta), thr = Double.parseDouble(threshold);
 
                 //call the neural net to do its training in other file with the specified user inputs above
 		PerceptronTraining perceptronTrain = new PerceptronTraining(readFile, w, ep, writeFile, alpha, th,  thr);

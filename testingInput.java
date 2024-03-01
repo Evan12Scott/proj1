@@ -14,12 +14,12 @@ public class testingInput {
                         }
                         else {
 				do {
-					System.out.println("Enter the testing/deploying data file name and ensure it is located in the TESTINGSETS subdirectory [INCLUDE .txt]:");
+					System.out.println("Enter the testing/deploying data file name and ensure it is located in the TESTINGSETS subdirectory:");
 					readFile = input.nextLine();
 				} while(userInput.checkReadFile(readFile, typeAction));
 
 				do {
-					System.out.println("Enter a file name to save the testing/deploying results [INCLUDE .txt]:");
+					System.out.println("Enter a file name to save the testing/deploying results:");
 					writeFile = input.nextLine();
 				} while(userInput.validateWriteFile(writeFile));
 

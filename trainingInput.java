@@ -8,7 +8,7 @@ public class trainingInput {
 		int typeAction = Integer.parseInt(action);
 
 		do {
-			System.out.println("Enter the training data file name and ensure it is located in the TRAININGSETS subdirectory [INCLUDE .txt]:");
+			System.out.println("Enter the training data file name and ensure it is located in the TRAININGSETS subdirectory:");
                         readFile = input.nextLine();
 		} while(userInput.checkReadFile(readFile, typeAction));
 
@@ -25,7 +25,7 @@ public class trainingInput {
                 } while(userInput.validateEpoch(epoch));
 
                 do {
-                        System.out.println("Enter a file name to save the trained weight settings [INCLUDE .txt]:");
+                        System.out.println("Enter a file name to save the trained weight settings:");
                         writeFile = input.nextLine();
                         } while(userInput.validateWriteFile(writeFile));
 

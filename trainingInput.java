@@ -1,0 +1,51 @@
+import java.util.Scanner;
+
+public class trainingInput {
+        validateInput userInput = new validateInput();
+	String readFile, weight, epoch, writeFile, learningRate, theta, threshold;
+	
+	public void promptUser(Scanner input) {
+
+		do {
+			System.out.println("Enter the training data file name and ensure it is located in the TRAININGSET subdirectory:");
+                        readFile = input.nextLine();
+		} while(userInput.checkReadFile(readFile));
+
+                do {
+                        System.out.println("Enter 0 to initialize weights to 0, enter 1 to initialize weights to random values between -0.5 and 0.5:");
+                        weight = input.nextLine();
+                } while(userInput.validateWeight(weight));
+
+                do {
+                        System.out.println("Enter the maximum number of training epochs [1:]:");
+                        epoch = input.nextLine();
+                } while(userInput.validateEpoch(epoch));
+
+                do {
+                        System.out.println("Enter a file name to save the trained weight settings:");
+                        writeFile = input.nextLine();
+                        } while(userInput.validateWriteFile(writeFile));
+
+                do {
+                        System.out.println("Enter the learning rate alpha from 0 to 1 but not including 0:");
+                        learningRate = input.nextLine();
+                } while(userInput.validateLearningRate(learningRate));
+
+		do {
+                        System.out.println("Enter the threshold theta:\n");
+                        theta = input.nextLine();
+                } while(userInput.validateTheta(theta));
+
+                do {
+                        System.out.println("Enter the threshold to be used for measuring weight changes:");
+                        threshold = input.nextLine();
+                } while(userInput.validateThreshold(threshold));
+
+                // valid inputs so now convert and do perceptron learning
+                int w = Integer.parseInt(weight), ep = Integer.parseInt(epoch);
+                double alpha = Integer.parseInt(learningRate), th = Integer.parseInt(theta), thr = Integer.parseInt(threshold);
+
+                //call the neural net to do its training in other file with the specified user inputs above
+	}
+}
+

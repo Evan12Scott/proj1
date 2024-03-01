@@ -16,6 +16,8 @@ public class trainingInput {
                         weight = input.nextLine();
                 } while(userInput.validateWeight(weight));
 
+		//if weight = 1 get set weight to random value between -0.5 and 0.5 in helper method below
+
                 do {
                         System.out.println("Enter the maximum number of training epochs [1:]:");
                         epoch = input.nextLine();
@@ -46,6 +48,8 @@ public class trainingInput {
                 double alpha = Integer.parseInt(learningRate), th = Integer.parseInt(theta), thr = Integer.parseInt(threshold);
 
                 //call the neural net to do its training in other file with the specified user inputs above
+		PerceptronTraining perceptronTrain = new PerceptronTraining(readFile, w, ep, writeFile, alpha, th,  thr);
+		perceptronTrain.Train();
 	}
 }
 

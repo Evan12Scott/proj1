@@ -13,16 +13,18 @@ public class testingInput {
                         }
                         else {
 				do {
-					System.out.println("Enter the trained weight settings input data file name:");
+					System.out.println("Enter the testing/deploying data file name and ensure it is located in the TESTINGSET subdirectory:");
 					readFile = input.nextLine();
 				} while(userInput.checkReadFile(readFile));
 
 				do {
-					System.out.println("Enter the trained weight settings input data file name:");
+					System.out.println("Enter a file name to save the testing/deploying results:");
 					writeFile = input.nextLine();
 				} while(userInput.validateWriteFile(writeFile));
 
 				// call the testing class file
+				PerceptronTesting perceptronTesting = new PerceptronTesting(readFile, writeFile);
+				perceptronTesting.Test();
                         }	
 	}
 }

@@ -13,9 +13,15 @@ public class PerceptronTraining {
 		this.learningRate = learningRate;
 		this.theta = theta;
 		this.threshold = threshold;
+
+		BufferedReader reader = new BufferedReader(new FileReader(readFile));
+                int inputDimension = reader.readLine();
+                int outputDimension = reader.readLine();
+                int numPairs = reader.readLine()
 	}
 
 	// implement main training algorithm and call any necessary helper methods (do 1 thing per method)
 	public void Train() {
+
 	}
 }

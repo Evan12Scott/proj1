@@ -52,7 +52,7 @@ public class PerceptronTraining {
 				
 				for(int j = 0; j < outputDimension; j++){ //Might need to do something about two 1s
 					double yj = calcYj(weightBias[j], weights, inputArr, j);
-					if(yj != expected[j]){
+					if(Math.abs(yj - expected[j]) > threshold){
 						updateWeights(inputArr, weights, weightBias, expected[j], j);
 						currEpochConvergence = false;
 					}

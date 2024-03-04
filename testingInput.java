@@ -2,7 +2,7 @@ import java.util.Scanner;
 
 public class testingInput {
 	validateInput userInput = new validateInput();
-	String readFile, writeFile, action;
+	String readWeightsFile, readDataFile, writeFile, action;
 	public void promptUser(Scanner input, String action){
 		int typeAction = Integer.parseInt(action);
 		do {                                                                                                                                         System.out.println("Enter 1 to test/deploy using a testing/deploying data file, enter 2 to quit:");          
@@ -14,9 +14,14 @@ public class testingInput {
                         }
                         else {
 				do {
+					System.out.println("Enter the file name with the trained weight settings and ensure it is located in the TESTINGSETS subdirectory:");
+					readWeightsFile = input.nextLine();
+				} while(userInput.checkReadFile(readWeightsFile, typeAction));
+
+				do {
 					System.out.println("Enter the testing/deploying data file name and ensure it is located in the TESTINGSETS subdirectory:");
-					readFile = input.nextLine();
-				} while(userInput.checkReadFile(readFile, typeAction));
+					readDataFile = input.nextLine();
+				} while(userInput.checkReadFile(readDataFile, typeAction));
 
 				do {
 					System.out.println("Enter a file name to save the testing/deploying results:");
@@ -24,7 +29,7 @@ public class testingInput {
 				} while(userInput.validateWriteFile(writeFile));
 
 				// call the testing class file
-				PerceptronTesting perceptronTesting = new PerceptronTesting(readFile, writeFile);
+				PerceptronTesting perceptronTesting = new PerceptronTesting(readWeightsFile, readDataFile, writeFile);
 				perceptronTesting.Test();
                         }	
 	}

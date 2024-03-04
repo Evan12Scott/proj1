@@ -17,6 +17,7 @@ public class PerceptronTraining {
 		this.theta = theta;
 		this.threshold = threshold;
 
+		// get initial base values from file
 		try{ //Possibly improve exception handling
 			reader = new BufferedReader(new FileReader(readFile));
 			inputDimension = Integer.parseInt(reader.readLine());
@@ -28,7 +29,6 @@ public class PerceptronTraining {
 
 	}
 
-	// implement main training algorithm and call any necessary helper methods (do 1 thing per method)
 	public void Train() {
 		double[][] weights = initializeWeights();
 		double[] weightBias = new double[outputDimension];
@@ -45,7 +45,7 @@ public class PerceptronTraining {
 
 		int currEpoch = 0;
 		boolean epochConverged = false, currEpochConvergence = true;
-		while(!epochConverged && currEpoch < epoch){ //DO SOMETHING WITH THETA AT SOME POINT
+		while(!epochConverged && currEpoch < epoch){
 			for(int i = 0; i < numPairs; i++){
 				int[] inputArr = getInputArr();
 				int[] expected = getExpected();
@@ -102,12 +102,12 @@ public class PerceptronTraining {
 			yIn += inputArr[i] * weights[i][j];
 		}
 
-		if(yIn > 0){
+		if(yIn > theta){
 			yIn = 1;
-		}else if(yIn == 0){
-			yIn = 0;
-		}else{
+		}else if(yIn < -1 * theta){
 			yIn = -1;
+		}else{
+			yIn = 0;
 		}
 
 		return yIn;

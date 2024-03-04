@@ -1,5 +1,6 @@
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.util.Random;
 
 public class PerceptronTraining {
 	int weight, epoch, inputDimension, outputDimension, numPairs;
@@ -16,28 +17,123 @@ public class PerceptronTraining {
 		this.theta = theta;
 		this.threshold = threshold;
 
-		try{
-			reader = new BufferedReader(new FileReader(readFile)); //CLOSE READER AT SOME POINT
+		try{ //Possibly improve exception handling
+			reader = new BufferedReader(new FileReader(readFile));
 			inputDimension = Integer.parseInt(reader.readLine());
 			outputDimension = Integer.parseInt(reader.readLine());
 			numPairs = Integer.parseInt(reader.readLine());
 		}catch(Exception e){
 			System.out.println("ERROR: " + e);
 		}
-		
-		System.out.println("Input Dimension: " + inputDimension + "\nOutput Dimension: " + outputDimension + "\nNumber of Pairs: " + numPairs); //REMOVE LATER
+
 	}
 
 	// implement main training algorithm and call any necessary helper methods (do 1 thing per method)
 	public void Train() {
-		int[] inputArr = getInputArr();
-		int[] expected = getExpected();
-		for(int exp: expected){
-			System.out.println(exp);
+		double[][] weights = initializeWeights();
+		double[] weightBias = new double[outputDimension];
+
+		if(weight == 1){ //possibly move to function
+			for(int i = 0; i < outputDimension; i++){
+				Random rand = new Random();
+				weightBias[i] = 0.5 * rand.nextDouble(); //Random number between 0-0.5
+				if(rand.nextInt(2) == 0){
+					weightBias[i] *= -1;
+				}
+			}
+		}
+
+		int currEpoch = 0;
+		boolean epochConverged = false, currEpochConvergence = true;
+		while(!epochConverged && currEpoch < epoch){ //DO SOMETHING WITH THETA AT SOME POINT
+			for(int i = 0; i < numPairs; i++){
+				int[] inputArr = getInputArr();
+				int[] expected = getExpected();
+				
+				for(int j = 0; j < outputDimension; j++){ //Might need to do something about two 1s
+					double yj = calcYj(weightBias[j], weights, inputArr, j);
+					if(yj != expected[j]){
+						updateWeights(inputArr, weights, weightBias, expected[j], j);
+						currEpochConvergence = false;
+					}
+				}
+			}
+
+			try{ //Close the file
+				reader.close();
+			}catch(Exception e){
+				System.out.println("ERROR: " + e);
+			}
+
+			if(currEpochConvergence){
+				epochConverged = true;
+			}else{
+				try{ //Reopen the file to reset reading progress
+					reader = new BufferedReader(new FileReader(readFile));
+					for(int p = 0; p < 3; p++){
+						reader.readLine();
+					}
+				}catch(Exception e){
+					System.out.println("ERROR: " + e);
+				}
+			}
+			currEpochConvergence = true;
+			currEpoch++;
+		}
+		
+		if(epochConverged){
+			System.out.println("Training converged after " + currEpoch + " epochs.");
+		}
+
+	}
+
+
+	private void updateWeights(int[] inputArr, double[][] weights, double[] weightBias, int t, int j){
+		weightBias[j] += learningRate*t;
+		for(int i = 0; i < inputDimension; i++){
+			weights[i][j] += learningRate*t*inputArr[i];
 		}
 	}
 
-	private int[] getInputArr(){
+
+	private double calcYj(double weightBias, double[][] weights, int[] inputArr, int j){ //MAKE 2D
+		double yIn = weightBias;
+		for(int i = 0; i < inputDimension; i++){
+			yIn += inputArr[i] * weights[i][j];
+		}
+
+		if(yIn > 0){
+			yIn = 1;
+		}else if(yIn == 0){
+			yIn = 0;
+		}else{
+			yIn = -1;
+		}
+
+		return yIn;
+	}
+
+
+	private double[][] initializeWeights(){
+		double[][] weights = new double[inputDimension][outputDimension];
+		if(weight == 1){
+			Random rand = new Random();
+			for(int i = 0; i < inputDimension; i++){
+				for(int j = 0; j < outputDimension; j++){
+					double weightRand = 0.5 * rand.nextDouble(); //Random number between 0-0.5
+					if(rand.nextInt(2) == 0){
+						weightRand *= -1;
+					}
+					weights[i][j] = weightRand;
+				}
+			}
+		}
+
+		return weights;
+	}
+
+
+	private int[] getInputArr(){ //Possibly improve exception handling
 		int[] inputArr = new int[inputDimension];
 		try{
 			int readIn = 0;
@@ -58,7 +154,7 @@ public class PerceptronTraining {
 	}
 
 
-	private int[] getExpected(){
+	private int[] getExpected(){ //Possibly improve exception handling
 		int[] expected = new int[outputDimension];
 		try{
 			reader.readLine(); //remove blank line

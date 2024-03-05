@@ -26,7 +26,7 @@ public class testingInput {
 				do {
 					System.out.println("Enter a file name to save the testing/deploying results:");
 					writeFile = input.nextLine();
-				} while(userInput.validateWriteFile(writeFile));
+				} while(userInput.validateWriteTestResultFile(writeFile));
 
 				// call the testing class file
 				PerceptronTesting perceptronTesting = new PerceptronTesting(readWeightsFile, readDataFile, writeFile);

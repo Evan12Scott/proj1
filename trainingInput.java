@@ -27,7 +27,7 @@ public class trainingInput {
                 do {
                         System.out.println("Enter a file name to save the trained weight settings:");
                         writeFile = input.nextLine();
-                        } while(userInput.validateWriteFile(writeFile));
+                        } while(userInput.validateWriteWeightsFile(writeFile));
 
                 do {
                         System.out.println("Enter the learning rate alpha from 0 to 1 but not including 0:");

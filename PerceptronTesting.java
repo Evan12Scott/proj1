@@ -55,5 +55,31 @@ public class PerceptronTesting {
 	
 	public void Test(){
 		// read in the testing data file which has the nxm matrix and the actual result/letter
+
+		//handle no +1s or multiple +1s so just set resultAnswer = "undecided"
+
+		writeToFile(resultValues, resultAnswer, expectedValues, expectedAnswer);
+	}
+
+	private void writeToFile(int[] resultValues, String resultAnswer, int[] expectedValues, String expectedAnswer) {
+		try{
+			BufferedWriter writer = new BufferedWriter(new FileWriter(writeFile));
+			writer.write("Actual Output:\n");
+			writer.write(resultAnswer + "\n");
+			for(int i = 0; i < resultValues.length; i++){
+				writer.write(resultValues[i] + " ");
+			}
+			writer.write("\n")
+			writer.write("ExpectedOutput:\n");
+			writer.write(expectedAnswer + "\n")
+			for(int i = 0; i < expectedValues.length; i++){
+				writer.write(expectedValues[i] + " ");
+			}
+			
+			writer.flush();
+			writer.close();
+		}catch(Exception e){
+			System.out.println("ERROR: " + e);
+		}
 	}
 }

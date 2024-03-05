@@ -39,8 +39,18 @@ public class validateInput {
         	}
 	}
 
-	public boolean validateWriteFile(String file){
-		String writeFile = "testResults/" + file;
+	public boolean validateWriteTestResultFile(String file){
+		String writeFile = "./testResults/" + file;
+		try (BufferedWriter writer = new BufferedWriter(new FileWriter(writeFile))) {
+			return false;
+		} catch (IOException e) {
+			System.err.println("An error occurred while writing to the test file: " + e.getMessage());
+			return true;
+        	}
+	}
+
+	public boolean validateWriteWeightsFile(String file){
+		String writeFile = "./trainedWeights/" + file;
 		try (BufferedWriter writer = new BufferedWriter(new FileWriter(writeFile))) {
 			return false;
 		} catch (IOException e) {

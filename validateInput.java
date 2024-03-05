@@ -26,10 +26,10 @@ public class validateInput {
 		try {
 			String readFile = "";
                 	if(typeAct == 1) {
-                        	readFile = "trainingSets/" + file;
+                        	readFile = "./trainingSets/" + file;
                 }
                 	else {
-                        	readFile = "testingSets/" + file;
+                        	readFile = "./testingSets/" + file;
 			}
 			BufferedReader reader = new BufferedReader(new FileReader(readFile));
 			return false;

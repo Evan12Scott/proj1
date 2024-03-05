@@ -47,9 +47,11 @@ public class trainingInput {
                 // valid inputs so now convert and do perceptron learning
                 int w = Integer.parseInt(weight), ep = Integer.parseInt(epoch);
                 double alpha = Double.parseDouble(learningRate), th = Double.parseDouble(theta), thr = Double.parseDouble(threshold);
+                String readDataFile = "./trainingSets/" + readFile;
+                String writeWeightFile = "./trainedWeights/" + writeFile;
 
                 //call the neural net to do its training in other file with the specified user inputs above
-		PerceptronTraining perceptronTrain = new PerceptronTraining(readFile, w, ep, writeFile, alpha, th,  thr);
+		PerceptronTraining perceptronTrain = new PerceptronTraining(readDataFile, w, ep, writeWeightFile, alpha, th,  thr);
 		perceptronTrain.Train();
 	}
 }

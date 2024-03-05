@@ -1,5 +1,3 @@
-// Abstraction of the neural net with necessary user prompts and calls
-
 import java.util.Scanner;
 
 public class main {
@@ -17,7 +15,7 @@ public class main {
 		
 		if(Integer.parseInt(action) == 1) {
 			train.promptUser(input, action);
-			test.promptUser(input, action);
+			test.promptUser(input, "2");
 		}
 		else {
 			test.promptUser(input,action);

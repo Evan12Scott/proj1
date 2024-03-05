@@ -34,10 +34,21 @@ public class validateInput {
 			BufferedReader reader = new BufferedReader(new FileReader(readFile));
 			return false;
 		} catch (IOException e) {
-            		System.err.println("An error occurred while reading the training file: " + e.getMessage());
+            		System.err.println("An error occurred while reading the data file: " + e.getMessage());
 			return true;
         	}
 	}
+
+	public boolean checkReadWeightFile(String file){
+		try {
+			String readFile = "./trainedWeights/" + file;
+			BufferedReader reader = new BufferedReader(new FileReader(readFile));
+			return false;
+		} catch (IOException e) {
+            System.err.println("An error occurred while reading the trained weights file: " + e.getMessage());
+			return true;
+        	}
+		}
 
 	public boolean validateWriteTestResultFile(String file){
 		String writeFile = "./testResults/" + file;

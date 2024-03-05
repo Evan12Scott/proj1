@@ -14,9 +14,9 @@ public class testingInput {
                         }
                         else {
 				do {
-					System.out.println("Enter the file name with the trained weight settings and ensure it is located in the TESTINGSETS subdirectory:");
+					System.out.println("Enter the file name with the trained weight settings and ensure it is located in the TRAINEDWEIGHTS subdirectory:");
 					readWeightsFile = input.nextLine();
-				} while(userInput.checkReadFile(readWeightsFile, typeAction));
+				} while(userInput.checkReadWeightFile(readWeightsFile));
 
 				do {
 					System.out.println("Enter the testing/deploying data file name and ensure it is located in the TESTINGSETS subdirectory:");
@@ -29,7 +29,10 @@ public class testingInput {
 				} while(userInput.validateWriteTestResultFile(writeFile));
 
 				// call the testing class file
-				PerceptronTesting perceptronTesting = new PerceptronTesting(readWeightsFile, readDataFile, writeFile);
+				String readWeights = "./trainedWeights/" + readWeightsFile;
+				String readData = "./testingSets/" + readDataFile;
+				String writeOut = "./testResults/" + writeFile;
+				PerceptronTesting perceptronTesting = new PerceptronTesting(readWeights, readData, writeOut);
 				perceptronTesting.Test();
                         }	
 	}

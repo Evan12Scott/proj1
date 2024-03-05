@@ -83,7 +83,7 @@ public class PerceptronTraining {
 
 	private void writeToFile(double[][] weights, double[] weightBias){
 		try{
-			BufferedWriter writer = new BufferedWriter(new FileWriter("./trainedWeights/results.txt"));
+			BufferedWriter writer = new BufferedWriter(new FileWriter(writeFile));
 			writer.write(inputDimension + "\n");
 			writer.write(outputDimension + "\n");
 			writer.write(theta + "\n\n");

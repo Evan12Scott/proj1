@@ -1,4 +1,6 @@
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
 import java.io.FileReader;
 import java.util.Random;
 
@@ -83,6 +85,27 @@ public class PerceptronTraining {
 		
 		if(epochConverged){
 			System.out.println("Training converged after " + currEpoch + " epochs.");
+		}
+
+		try{
+			BufferedWriter writer = new BufferedWriter(new FileWriter("./trainedWeights/results.txt"));
+			writer.write(inputDimension + "\n");
+			writer.write(outputDimension + "\n");
+			writer.write(theta + "\n\n");
+			for(int i = 0; i < weights.length; i++){
+				for(int j = 0; j < weights[i].length; j++){
+					writer.write(weights[i][j] + " ");
+				}
+				writer.write("\n");
+			}
+			writer.write("\n");
+			for(int i = 0; i < weightBias.length; i++){
+				writer.write(weightBias[i] + " ");
+			}
+			writer.flush();
+			writer.close();
+		}catch(Exception e){
+			System.out.println("ERROR: " + e);
 		}
 
 	}

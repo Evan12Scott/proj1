@@ -33,17 +33,7 @@ public class PerceptronTraining {
 
 	public void Train() {
 		double[][] weights = initializeWeights();
-		double[] weightBias = new double[outputDimension];
-
-		if(weight == 1){ //possibly move to function
-			for(int i = 0; i < outputDimension; i++){
-				Random rand = new Random();
-				weightBias[i] = 0.5 * rand.nextDouble(); //Random number between 0-0.5
-				if(rand.nextInt(2) == 0){
-					weightBias[i] *= -1;
-				}
-			}
-		}
+		double[] weightBias = initializeWeightBias();
 
 		int currEpoch = 0;
 		boolean epochConverged = false, currEpochConvergence = true;
@@ -86,7 +76,12 @@ public class PerceptronTraining {
 		if(epochConverged){
 			System.out.println("Training converged after " + currEpoch + " epochs.");
 		}
+		
+		writeToFile(weights, weightBias);
+	}
 
+
+	private void writeToFile(double[][] weights, double[] weightBias){
 		try{
 			BufferedWriter writer = new BufferedWriter(new FileWriter("./trainedWeights/results.txt"));
 			writer.write(inputDimension + "\n");
@@ -107,7 +102,6 @@ public class PerceptronTraining {
 		}catch(Exception e){
 			System.out.println("ERROR: " + e);
 		}
-
 	}
 
 
@@ -153,6 +147,22 @@ public class PerceptronTraining {
 		}
 
 		return weights;
+	}
+
+
+	private double[] initializeWeightBias(){
+		double[] weightBias = new double[outputDimension];
+		if(weight == 1){ //possibly move to function
+			for(int i = 0; i < outputDimension; i++){
+				Random rand = new Random();
+				weightBias[i] = 0.5 * rand.nextDouble(); //Random number between 0-0.5
+				if(rand.nextInt(2) == 0){
+					weightBias[i] *= -1;
+				}
+			}
+		}
+
+		return weightBias;
 	}
 
 

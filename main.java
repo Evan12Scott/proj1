@@ -2,6 +2,12 @@
 Authors: Evan Scott, Kieran Kennedy, Sean Pala
 Last Date Modified: 3/7/24
 Description: Main method which abstracts the logic for the testing and training of perceptron net
+
+To run the program: 
+	javac validateInput.java testingInput.java trainingInput.java main.java PerceptronTesting.java  PerceptronTesting.java
+
+	java main
+
 */
 
 import java.util.Scanner;

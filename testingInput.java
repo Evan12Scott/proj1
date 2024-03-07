@@ -1,11 +1,24 @@
+/*
+Authors: Evan Scott, Kieran Kennedy, Sean Pala
+Last Date Modified: 3/7/24
+Description: testingInput handles the retrieval of all necessary input form user that is required for testing the perceptron net. Makes use of functions located in validateInput.java to ensure the validity of the input. 
+*/
+
 import java.util.Scanner;
 
 public class testingInput {
 	validateInput userInput = new validateInput();
 	String readWeightsFile, readDataFile, writeFile, action;
+
+	/*
+	Description: prompts user for all necessary information to test the perceptron net
+	PARAMS: input: Scanner object
+	 		action: String convert to int
+	RETURN: None
+	*/
 	public void promptUser(Scanner input, String action){
 		int typeAction = Integer.parseInt(action);
-		do {                                                                                                                                         System.out.println("Enter 1 to test/deploy using a testing/deploying data file, enter 2 to quit:");          
+		do {                                                                                                    		System.out.println("Enter 1 to test/deploy using a testing/deploying data file, enter 2 to quit:");          
 			action = input.nextLine();
 		} while(userInput.checkAction(action));
 
@@ -28,10 +41,12 @@ public class testingInput {
 					writeFile = input.nextLine();
 				} while(userInput.validateWriteTestResultFile(writeFile));
 
-				// call the testing class file
+				// add appropriate paths to the files provided
 				String readWeights = "./trainedWeights/" + readWeightsFile;
 				String readData = "./testingSets/" + readDataFile;
 				String writeOut = "./testResults/" + writeFile;
+
+				// all necessary inputs have been acquired so begin testing of perceptron net
 				PerceptronTesting perceptronTesting = new PerceptronTesting(readWeights, readData, writeOut);
 				perceptronTesting.Test();
                         }	

@@ -101,7 +101,7 @@ public class PerceptronTesting {
 		try{ //Close the file
 			reader.close();
 		}catch(Exception e){
-			System.out.println("ERROR: " + e);
+			System.out.println("ERROR1: " + e);
 		}
 
 		System.out.println("\nTesting has finished. View the results of the perceptron net in the testResults subdirectory!\n");
@@ -135,7 +135,7 @@ public class PerceptronTesting {
 			writer.flush();
 			writer.close();
 		}catch(Exception e){
-			System.out.println("ERROR: " + e);
+			System.out.println("ERROR2: " + e);
 		}
 	}
 
@@ -143,7 +143,7 @@ public class PerceptronTesting {
 	Description: computes activation of each output unit.
 	PARAMS: weightBias: double (bias value calculated from training)
 		    weights: double[][] (2D array storing the trained weights)
-			inputArr: int[] (array storing testing data by line)
+			inputArr: int[] (array storing testing data)
 			j: int
 	RETURN: double - activation
 	*/
@@ -181,7 +181,7 @@ public class PerceptronTesting {
 				}
 			}
 		}catch(Exception e){
-			System.out.println("ERROR: " + e);
+			System.out.println("ERROR3: " + e);
 		}
 		
 		return inputArr;
@@ -202,7 +202,7 @@ public class PerceptronTesting {
 				expected[i] = Integer.parseInt(expectedArr[i]);
 			}
 		}catch(Exception e){
-			System.out.println("ERROR: " + e);
+			System.out.println("ERROR4: " + e);
 		}
 
 		return expected;
@@ -218,7 +218,7 @@ public class PerceptronTesting {
 		try {
 			expectedLetter = reader.readLine();
 		} catch(Exception e){
-			System.out.println("ERROR: " + e);
+			System.out.println("ERROR5: " + e);
 		}
 
 		return expectedLetter;

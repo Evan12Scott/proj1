@@ -135,7 +135,7 @@ public class PerceptronTraining {
 
 	/*
 	Description: updates biases and weights
-	PARAMS: inputArr: int[] (array storing testing data by line)
+	PARAMS: inputArr: int[] (array storing testing data)
 		    weights: double[][] (2D array storing the trained weights)
 		    weightBias: double[] (array of bias values for output units)
 			t: int
@@ -153,7 +153,7 @@ public class PerceptronTraining {
 	Description: computes activation of each output unit.
 	PARAMS: weightBias: double (bias value calculated from training)
 		    weights: double[][] (2D array storing the trained weights)
-			inputArr: int[] (array storing testing data by line)
+			inputArr: int[] (array storing testing data)
 			j: int
 	RETURN: double - activation
 	*/

@@ -1,9 +1,21 @@
+/*
+Authors: Evan Scott, Kieran Kennedy, Sean Pala
+Last Date Modified: 3/7/24
+Description: trainingInput handles the retrieval of all necessary input from user that is required for training the perceptron net. Makes use of functions located in validateInput.java to ensure the validity of the input. 
+*/
+
 import java.util.Scanner;
 
 public class trainingInput {
         validateInput userInput = new validateInput();
 	String readFile, weight, epoch, writeFile, learningRate, theta, threshold;
 	
+        /*
+	Description: prompts user for all necessary information to train the perceptron net
+	PARAMS: input: Scanner object
+	 	action: String convert to int
+	RETURN: None
+	*/
 	public void promptUser(Scanner input, String action) {
 		int typeAction = Integer.parseInt(action);
 
@@ -16,8 +28,6 @@ public class trainingInput {
                         System.out.println("Enter 0 to initialize weights to 0, enter 1 to initialize weights to random values between -0.5 and 0.5:");
                         weight = input.nextLine();
                 } while(userInput.validateWeight(weight));
-
-		//if weight = 1 get set weight to random value between -0.5 and 0.5 in helper method below
 
                 do {
                         System.out.println("Enter the maximum number of training epochs [1:]:");
@@ -44,13 +54,15 @@ public class trainingInput {
                         threshold = input.nextLine();
                 } while(userInput.validateThreshold(threshold));
 
-                // valid inputs so now convert and do perceptron learning
+                // valid inputs so converting from Strings to appropriate int/double
                 int w = Integer.parseInt(weight), ep = Integer.parseInt(epoch);
                 double alpha = Double.parseDouble(learningRate), th = Double.parseDouble(theta), thr = Double.parseDouble(threshold);
+                
+                // add appropriate paths to the files provided
                 String readDataFile = "./trainingSets/" + readFile;
                 String writeWeightFile = "./trainedWeights/" + writeFile;
 
-                //call the neural net to do its training in other file with the specified user inputs above
+                // all necessary inputs have been acquired so begin training of perceptron net
 		PerceptronTraining perceptronTrain = new PerceptronTraining(readDataFile, w, ep, writeWeightFile, alpha, th,  thr);
 		perceptronTrain.Train();
 	}

@@ -1,3 +1,9 @@
+/*
+Authors: Evan Scott, Kieran Kennedy, Sean Pala
+Last Date Modified: 3/7/24
+Description: PerceptronTraining handles the training for the perceptron net
+*/
+
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
@@ -9,7 +15,18 @@ public class PerceptronTraining {
 	BufferedReader reader;
 	double learningRate, theta, threshold;
 	String readFile, writeFile;
-		
+	
+	/*
+	Description: constructor which initializes and gets necessary starter values from param file reading
+	PARAMS: readFile: String (filename storing data for training)
+			weight: int
+			epoch: int
+			writeFile: String (filename for trained weights to be written to after training)
+			learningRate: double
+			theta: double
+			threshhold: double
+	RETURN: None
+	*/
 	public PerceptronTraining(String readFile, int weight, int epoch, String writeFile, double learningRate, double theta, double threshold) {
 		this.readFile = readFile;
 		this.weight = weight;
@@ -20,7 +37,7 @@ public class PerceptronTraining {
 		this.threshold = threshold;
 
 		// get initial base values from file
-		try{ //Possibly improve exception handling
+		try{
 			reader = new BufferedReader(new FileReader(readFile));
 			inputDimension = Integer.parseInt(reader.readLine());
 			outputDimension = Integer.parseInt(reader.readLine());
@@ -31,6 +48,11 @@ public class PerceptronTraining {
 
 	}
 
+	/*
+	Description: implements algorithm for training the perceptron net. Calls a number of helper methods for one task per function methodology.
+	PARAMS: None
+	RETURN: None
+	*/
 	public void Train() {
 		double[][] weights = initializeWeights();
 		double[] weightBias = initializeWeightBias();
@@ -42,7 +64,7 @@ public class PerceptronTraining {
 				int[] inputArr = getInputArr();
 				int[] expected = getExpected();
 				
-				for(int j = 0; j < outputDimension; j++){ //Might need to do something about two 1s
+				for(int j = 0; j < outputDimension; j++){
 					double yj = calcYj(weightBias[j], weights, inputArr, j);
 					if(Math.abs(yj - expected[j]) > threshold){
 						updateWeights(inputArr, weights, weightBias, expected[j], j);
@@ -51,7 +73,8 @@ public class PerceptronTraining {
 				}
 			}
 
-			try{ //Close the file
+			// close the file
+			try{ 
 				reader.close();
 			}catch(Exception e){
 				System.out.println("ERROR: " + e);
@@ -60,7 +83,8 @@ public class PerceptronTraining {
 			if(currEpochConvergence){
 				epochConverged = true;
 			}else{
-				try{ //Reopen the file to reset reading progress
+				// reopen the file to reset reading progress
+				try{
 					reader = new BufferedReader(new FileReader(readFile));
 					for(int p = 0; p < 3; p++){
 						reader.readLine();
@@ -80,7 +104,12 @@ public class PerceptronTraining {
 		writeToFile(weights, weightBias);
 	}
 
-
+	/*
+	Description: writes the trained weights of perceptron net after convergence out to specified file.
+	PARAMS: weights: double[][] (2D array storing the trained weights)
+		    weightBias: double[] (array of bias values for output units)
+	RETURN: None
+	*/
 	private void writeToFile(double[][] weights, double[] weightBias){
 		try{
 			BufferedWriter writer = new BufferedWriter(new FileWriter(writeFile));
@@ -104,7 +133,15 @@ public class PerceptronTraining {
 		}
 	}
 
-
+	/*
+	Description: updates biases and weights
+	PARAMS: inputArr: int[] (array storing testing data by line)
+		    weights: double[][] (2D array storing the trained weights)
+		    weightBias: double[] (array of bias values for output units)
+			t: int
+			j: int
+	RETURN: None
+	*/
 	private void updateWeights(int[] inputArr, double[][] weights, double[] weightBias, int t, int j){
 		weightBias[j] += learningRate*t;
 		for(int i = 0; i < inputDimension; i++){
@@ -112,8 +149,15 @@ public class PerceptronTraining {
 		}
 	}
 
-
-	private double calcYj(double weightBias, double[][] weights, int[] inputArr, int j){ //MAKE 2D
+	/*
+	Description: computes activation of each output unit.
+	PARAMS: weightBias: double (bias value calculated from training)
+		    weights: double[][] (2D array storing the trained weights)
+			inputArr: int[] (array storing testing data by line)
+			j: int
+	RETURN: double - activation
+	*/
+	private double calcYj(double weightBias, double[][] weights, int[] inputArr, int j){ 
 		double yIn = weightBias;
 		for(int i = 0; i < inputDimension; i++){
 			yIn += inputArr[i] * weights[i][j];
@@ -130,7 +174,11 @@ public class PerceptronTraining {
 		return yIn;
 	}
 
-
+	/*
+	Description: initializes the training weights for the 2D array randomly between 0-0.5
+	PARAMS: None
+	RETURN: double[][] - 2D array which randomized weights between 0-0.5
+	*/
 	private double[][] initializeWeights(){
 		double[][] weights = new double[inputDimension][outputDimension];
 		if(weight == 1){
@@ -149,10 +197,14 @@ public class PerceptronTraining {
 		return weights;
 	}
 
-
+	/*
+	Description: initializes the output units bias randomly between 0-0.5
+	PARAMS: None
+	RETURN: double[] - array containing randomized biases between 0-0.5
+	*/
 	private double[] initializeWeightBias(){
 		double[] weightBias = new double[outputDimension];
-		if(weight == 1){ //possibly move to function
+		if(weight == 1){
 			for(int i = 0; i < outputDimension; i++){
 				Random rand = new Random();
 				weightBias[i] = 0.5 * rand.nextDouble(); //Random number between 0-0.5
@@ -165,8 +217,12 @@ public class PerceptronTraining {
 		return weightBias;
 	}
 
-
-	private int[] getInputArr(){ //Possibly improve exception handling
+	/*
+	Description: retrieves the data in testing file line by line
+	PARAMS: None
+	RETURN: int[] - array containing testing data
+	*/
+	private int[] getInputArr(){
 		int[] inputArr = new int[inputDimension];
 		try{
 			int readIn = 0;
@@ -186,8 +242,12 @@ public class PerceptronTraining {
 		return inputArr;
 	}
 
-
-	private int[] getExpected(){ //Possibly improve exception handling
+	/*
+	Description: passes the correct output unit values and letter representation from data file
+	PARAMS: None
+	RETURN: int[] - array containing correct output units
+	*/
+	private int[] getExpected(){
 		int[] expected = new int[outputDimension];
 		try{
 			reader.readLine(); //remove blank line

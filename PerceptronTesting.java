@@ -75,6 +75,7 @@ public class PerceptronTesting {
 		String resultAnswer = "Undecided";
 		String[] potentialAnswers = {"A", "B", "C", "D", "E", "J", "K"};
 		
+		int numCorrect = 0;
 		for(int i = 0; i < numPairs; i++){
 			int count1s = 0;
 			int[] inputArr = getInputArr();
@@ -96,6 +97,9 @@ public class PerceptronTesting {
 			}
 				
 			writeToFile(resultValues, resultAnswer, expectedValues, expectedAnswer);
+			if(resultAnswer.equals(expectedAnswer)){
+				numCorrect += 1;
+			}
 		}
 
 		try{ //Close the file
@@ -106,6 +110,16 @@ public class PerceptronTesting {
 
 		System.out.println("\nTesting has finished. View the results of the perceptron net in the testResults subdirectory!\n");
 
+		try{
+			double perCorrect = (numCorrect/(double)numPairs) * 100;
+			BufferedWriter writer = new BufferedWriter(new FileWriter(writeFile, true));
+			writer.write("Overall classification accuracy for the testing set: " + Math.round(perCorrect) + "%");
+			writer.flush();
+			writer.close();
+		}catch(Exception e){
+			System.out.println("ERROR: " + e);
+		}
+		
 	}
 
 	/*

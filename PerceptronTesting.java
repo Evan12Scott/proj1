@@ -113,7 +113,7 @@ public class PerceptronTesting {
 		try{
 			double perCorrect = (numCorrect/(double)numPairs) * 100;
 			BufferedWriter writer = new BufferedWriter(new FileWriter(writeFile, true));
-			writer.write("Overall classification accuracy for the testing set: " + Math.round(perCorrect) + "%");
+			writer.write("Overall classification accuracy for the testing set: " + Math.round(perCorrect) + "%\n");
 			writer.flush();
 			writer.close();
 		}catch(Exception e){

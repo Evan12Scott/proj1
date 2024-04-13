@@ -1,0 +1,148 @@
+Actual Output:
+A
+1 -1 -1 -1 -1 -1 -1 
+Expected Output:
+A
+1 -1 -1 -1 -1 -1 -1 
+
+Actual Output:
+B
+-1 1 -1 -1 -1 -1 -1 
+Expected Output:
+B
+-1 1 -1 -1 -1 -1 -1 
+
+Actual Output:
+C
+-1 -1 1 -1 -1 -1 -1 
+Expected Output:
+C
+-1 -1 1 -1 -1 -1 -1 
+
+Actual Output:
+D
+-1 -1 -1 1 -1 -1 -1 
+Expected Output:
+D
+-1 -1 -1 1 -1 -1 -1 
+
+Actual Output:
+E
+-1 -1 -1 -1 1 -1 -1 
+Expected Output:
+E
+-1 -1 -1 -1 1 -1 -1 
+
+Actual Output:
+J
+-1 -1 -1 -1 -1 1 -1 
+Expected Output:
+J
+-1 -1 -1 -1 -1 1 -1 
+
+Actual Output:
+K
+-1 -1 -1 -1 -1 -1 1 
+Expected Output:
+K
+-1 -1 -1 -1 -1 -1 1 
+
+Actual Output:
+A
+1 -1 -1 -1 -1 -1 -1 
+Expected Output:
+A
+1 -1 -1 -1 -1 -1 -1 
+
+Actual Output:
+B
+-1 1 -1 -1 -1 -1 -1 
+Expected Output:
+B
+-1 1 -1 -1 -1 -1 -1 
+
+Actual Output:
+C
+-1 -1 1 -1 -1 -1 -1 
+Expected Output:
+C
+-1 -1 1 -1 -1 -1 -1 
+
+Actual Output:
+D
+-1 -1 -1 1 -1 -1 -1 
+Expected Output:
+D
+-1 -1 -1 1 -1 -1 -1 
+
+Actual Output:
+E
+-1 -1 -1 -1 1 -1 -1 
+Expected Output:
+E
+-1 -1 -1 -1 1 -1 -1 
+
+Actual Output:
+J
+-1 -1 -1 -1 -1 1 -1 
+Expected Output:
+J
+-1 -1 -1 -1 -1 1 -1 
+
+Actual Output:
+K
+-1 -1 -1 -1 -1 -1 1 
+Expected Output:
+K
+-1 -1 -1 -1 -1 -1 1 
+
+Actual Output:
+A
+1 -1 -1 -1 -1 -1 -1 
+Expected Output:
+A
+1 -1 -1 -1 -1 -1 -1 
+
+Actual Output:
+B
+-1 1 -1 -1 -1 -1 -1 
+Expected Output:
+B
+-1 1 -1 -1 -1 -1 -1 
+
+Actual Output:
+C
+-1 -1 1 -1 -1 -1 -1 
+Expected Output:
+C
+-1 -1 1 -1 -1 -1 -1 
+
+Actual Output:
+D
+-1 -1 -1 1 -1 -1 -1 
+Expected Output:
+D
+-1 -1 -1 1 -1 -1 -1 
+
+Actual Output:
+E
+-1 -1 -1 -1 1 -1 -1 
+Expected Output:
+E
+-1 -1 -1 -1 1 -1 -1 
+
+Actual Output:
+J
+-1 -1 -1 -1 -1 1 -1 
+Expected Output:
+J
+-1 -1 -1 -1 -1 1 -1 
+
+Actual Output:
+K
+-1 -1 -1 -1 -1 -1 1 
+Expected Output:
+K
+-1 -1 -1 -1 -1 -1 1 
+
+Overall classification accuracy for the testing set: 100%
